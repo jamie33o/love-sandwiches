@@ -125,12 +125,13 @@ def main():
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, "sales")
 
-    get_stock_values(stock_data)
-
     return stock_data
 
 
-print("Welcome to Love Sanwiches Data Automation")
+print("Welcome to Love Sandwiches data automation.\n")
+stock_data = main()
+
+# Write you code below this comment
 
 
 def get_stock_values(data): 
@@ -139,7 +140,8 @@ def get_stock_values(data):
    
     # Use a dictionary comprehension to create the dictionary
     stock_values = {key: value for key, value in zip(headings, data)}
-    print(stock_values)
+    return stock_values
     
+stock_values = get_stock_values(stock_data)
 
-main()
+print(stock_values)
