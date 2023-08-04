@@ -62,7 +62,7 @@ def update_worksheet(data, worksheet):
      worksheet_to_update = SHEET.worksheet(worksheet)
      worksheet_to_update.append_row(data)
      print(f"{worksheet} worksheet updated successfully")
-     
+
 
 def calculate_surplus_data(sales_row):
     """
@@ -124,10 +124,23 @@ def main():
     update_worksheet(new_surplus_data, "surplus")
     sales_columns = get_last_5_entries_sales()
     stock_data = calculate_stock_data(sales_columns)
-    update_worksheet(stock_data, "stock")
-    
-    
+    update_worksheet(stock_data, "sales")
+
+    get_stock_values(stock_data)
+
+    return stock_data
 
 
 print("Welcome to Love Sanwiches Data Automation")
+
+
+def get_stock_values(data): 
+
+    headings = SHEET.worksheet("sales").get_all_values()[0]
+   
+    # Use a dictionary comprehension to create the dictionary
+    stock_values = {key: value for key, value in zip(headings, data)}
+    print(stock_values)
+    
+
 main()
